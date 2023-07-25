@@ -66,6 +66,7 @@
       <th scope="col">completato</th>
       <th scope="col">prestazione</th>
       <th scope="col" *ngIf="isMedicoActive">cancella appuntamento</th>
+      <th scope="col">medico</th>
       <th scope="col">modifica Orario</th>
     </tr>
   </thead>
@@ -101,6 +102,9 @@
       </ng-template>
       <td>
         {{appuntamento.prestazione?.tipologia}}
+      </td>
+      <td>
+        {{appuntamento.prestazione?.medico?.firstName}}
       </td>
       <td>
         <button
