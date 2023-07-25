@@ -65,9 +65,9 @@
       <th scope="col">ricetta</th>
       <th scope="col">completato</th>
       <th scope="col">prestazione</th>
-      <th scope="col" *ngIf="isMedicoActive">cancella appuntamento</th>
       <th scope="col">medico</th>
       <th scope="col">paziente</th>
+      <th scope="col" *ngIf="isMedicoActive">cancella appuntamento</th>
       <th scope="col">modifica Orario</th>
     </tr>
   </thead>
@@ -90,14 +90,6 @@
           completato
         </button>
       </td>
-      <td *ngIf="isMedicoActive">
-        <button
-          type="button"
-          (click)="deleteAppuntamento(appuntamento.appuntamentoId!)"
-        >
-          cancella
-        </button>
-      </td>
       <ng-template #completatoTd>
         <td>{{ appuntamento.completato }}</td>
       </ng-template>
@@ -109,6 +101,14 @@
       </td>
       <td>
         {{appuntamento.paziente?.firstName}}
+      </td>
+      <td *ngIf="isMedicoActive">
+        <button
+          type="button"
+          (click)="deleteAppuntamento(appuntamento.appuntamentoId!)"
+        >
+          cancella
+        </button>
       </td>
       <td>
         <button
