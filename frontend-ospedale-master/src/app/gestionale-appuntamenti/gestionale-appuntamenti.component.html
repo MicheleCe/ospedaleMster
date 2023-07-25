@@ -16,17 +16,27 @@
         </h1>
       </div>
       <div class="modal-body">
-          <div class="mt-3">
-            <label class="text-white">Nuovo Orario</label> <br />
-            <input [(ngModel)]="richiesta.nuovoOrario" type="text" class="input" />
-          </div>
-          <div class="mt-3">
-            <label class="text-white">Nuova Data</label> <br />
-            <input [(ngModel)]="richiesta.nuovaData" type="text" class="input" />
-          </div>
-          <div class="mt-3">
-            <button (click)="bottoneModificaAppuntamento(selectedAppuntamentoId)" type="button" class="btn btn-success">Modifica</button>
-          </div>
+        <div class="mt-3">
+          <label class="text-white">Nuovo Orario</label> <br />
+          <input
+            [(ngModel)]="richiesta.nuovoOrario"
+            type="text"
+            class="input"
+          />
+        </div>
+        <div class="mt-3">
+          <label class="text-white">Nuova Data</label> <br />
+          <input [(ngModel)]="richiesta.nuovaData" type="text" class="input" />
+        </div>
+        <div class="mt-3">
+          <button
+            (click)="bottoneModificaAppuntamento(selectedAppuntamentoId)"
+            type="button"
+            class="btn btn-success"
+          >
+            Modifica
+          </button>
+        </div>
       </div>
       <div class="modal-body d-flex flex-column align-items-center d-none">
         <div
@@ -39,7 +49,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
           Close
         </button>
       </div>
@@ -54,32 +64,55 @@
       <th scope="col">orario</th>
       <th scope="col">ricetta</th>
       <th scope="col">completato</th>
+      <th scope="col">prestazione</th>
+      <th scope="col" *ngIf="isMedicoActive">cancella appuntamento</th>
       <th scope="col">modifica Orario</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let appuntamento of appuntamenti" [ngClass]="{'table-success': appuntamento.completato}" >
+    <tr
+      *ngFor="let appuntamento of appuntamenti"
+      [ngClass]="{ 'table-success': appuntamento.completato }"
+    >
       <td>
-        {{appuntamento.data}}
+        {{ appuntamento.data }}
       </td>
       <td>
-        {{appuntamento.orario}}
+        {{ appuntamento.orario }}
       </td>
       <td>
-        {{appuntamento.ricetta}}
+        {{ appuntamento.ricetta }}
       </td>
       <td *ngIf="isMedicoActive; else completatoTd">
-          <button type="button" (click)="completaAppuntamento(appuntamento!)">completato</button> 
-          <button type="button" (click)="deleteAppuntamento(appuntamento.appuntamentoId!)">cancella</button>
+        <button type="button" (click)="completaAppuntamento(appuntamento!)">
+          completato
+        </button>
+      </td>
+      <td *ngIf="isMedicoActive">
+        <button
+          type="button"
+          (click)="deleteAppuntamento(appuntamento.appuntamentoId!)"
+        >
+          cancella
+        </button>
       </td>
       <ng-template #completatoTd>
-        <td>{{appuntamento.completato}}</td>
+        <td>{{ appuntamento.completato }}</td>
       </ng-template>
-        <td>
-        <button class="btn"  data-bs-toggle="modal" data-bs-target="#OrarioModal" type="button" (click)="openModal(appuntamento.appuntamentoId!)">
+      <td>
+        {{appuntamento.prestazione?.tipologia}}
+      </td>
+      <td>
+        <button
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#OrarioModal"
+          type="button"
+          (click)="openModal(appuntamento.appuntamentoId!)"
+        >
           <i class="fa-solid fa-pen"></i>
         </button>
-    </td>
+      </td>
     </tr>
   </tbody>
 </table>
