@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Prestazione } from '../interfaces/prestazione';
 import { fetchService } from '../services/fetch.service';
 import { ActivatedRoute } from '@angular/router';
 import { Paziente } from '../interfaces/paziente';
 import { Appuntamento } from '../interfaces/Appuntamento';
-import { Richiesta } from '../interfaces/Richiesta';
+import { GestionaleAppuntamentiComponent } from '../gestionale-appuntamenti/gestionale-appuntamenti.component';
 
 
 @Component({
@@ -18,13 +18,18 @@ export class PazienteComponent {
     private route: ActivatedRoute
     ) {}
     
+    @ViewChild(GestionaleAppuntamentiComponent) childComponent: GestionaleAppuntamentiComponent | undefined;
+
     ngOnInit(): void {
       this.returnSelectedPaziente(this.numberId);
     }
+    
 
   nuovaPrestazione: Prestazione | undefined;
 
-
+  dsadsa(){
+    this.childComponent?.returnAppuntamenti
+  }
   selectedAppuntamentoId: number = 0
 
   nuovoAppuntamento : Appuntamento = {
@@ -56,7 +61,7 @@ export class PazienteComponent {
     this.nuovoAppuntamento.pazienteId = this.numberId;
     this.nuovoAppuntamento.prestazioneId = Number(this.nuovaPrestazione?.prestazioneId);
     console.log(this.nuovoAppuntamento);
-    this.fetchservice.postAppuntamento(this.nuovoAppuntamento).then(() => this.returnSelectedPaziente(this.numberId))
+    this.fetchservice.postAppuntamento(this.nuovoAppuntamento).then(() => this.childComponent?.returnAppuntamenti(this.numberId))
   }
 
   addPrestazione(receivedPrestazione : Prestazione){
