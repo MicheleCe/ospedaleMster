@@ -1,0 +1,12 @@
+.btn{
+  background-color: #004bad;
+  color: white;
+}
+
+.list-group{
+  border: 1px solid #004bad44;
+}
+
+.list-group-item{
+  border: 1px solid #004bad44;
+}

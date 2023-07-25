@@ -1,0 +1,46 @@
+
+<h3 class="mt-5">Prestazioni:</h3>
+<div *ngIf="isDirigenteActive" class="text-center mt-4 d-flex flex-column w-25 gap-4 m-auto">
+  <input [(ngModel)]="tipologia" placeholder="tipologia"/>
+  <select [(ngModel)]="medicoId" name="" id="">
+    <option *ngFor="let medico of receivedMedici" value="{{medico.medicoId}}">
+      {{ medico.firstName! }} {{ medico.lastName! }}
+    </option>
+  </select>
+
+    <button (click)="bottonePrestazione()" class="btn">Submit</button>
+
+
+</div>
+
+<table class="table table-striped mt-5">
+  <thead>
+    <tr>
+      <th *ngIf="isDirigenteActive" scope="col">action</th>
+      <th scope="col">tipologia</th>
+      <th scope="col">medico id</th>
+      <th *ngIf="isSetPrestazioneActive" scope="col">Prenota Prestazione</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prestazione of prestazioni">
+      <td *ngIf="isDirigenteActive">
+          <button class="btn" (click)="bottoneDeletePrestazione(prestazione.prestazioneId)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+      </td>
+      <td>
+        {{ prestazione.tipologia }}
+      </td>
+      <td>
+        {{ prestazione.medico.firstName! }} {{ prestazione.medico.lastName! }}
+      </td>
+      <td *ngIf="isSetPrestazioneActive">
+        <button class="btn" (click)="prenotaPrestazione(prestazione)" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+    </td>
+    </tr>
+  </tbody>
+</table>
+
