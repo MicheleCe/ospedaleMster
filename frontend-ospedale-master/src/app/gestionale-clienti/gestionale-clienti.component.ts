@@ -4,11 +4,11 @@ import { fetchService } from '../services/fetch.service';
 
 
 @Component({
-  selector: 'app-gestional-clienti',
-  templateUrl: './gestional-clienti.component.html',
-  styleUrls: ['./gestional-clienti.component.css'],
+  selector: 'app-gestionale-clienti',
+  templateUrl: './gestionale-clienti.component.html',
+  styleUrls: ['./gestionale-clienti.component.css'],
 })
-export class GestionalClientiComponent implements OnInit {
+export class GestionaleClientiComponent implements OnInit {
   constructor(private fetchservice: fetchService) {}
   
   pazienti: Paziente[] = [];

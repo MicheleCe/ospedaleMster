@@ -11,7 +11,7 @@ import { PazienteComponent } from './paziente/paziente.component';
 import { PazientePrenotatoComponent } from './paziente/paziente-prenotato/paziente-prenotato.component';
 import { MedicoComponent } from './medico/medico.component';
 import { DirigenteComponent } from './dirigente/dirigente.component';
-import { GestionalClientiComponent } from './gestional-clienti/gestional-clienti.component';
+import { GestionaleClientiComponent } from './gestionale-clienti/gestionale-clienti.component';
 import { GestionaleMediciComponent } from './gestionale-medici/gestionale-medici.component';
 import { GestionalePrestazioniComponent } from './gestionale-prestazioni/gestionale-prestazioni.component';
 import { GestionaleRichiesteComponent } from './gestionale-richieste/gestionale-richieste.component';
@@ -26,7 +26,7 @@ import { GestionaleAppuntamentiComponent } from './gestionale-appuntamenti/gesti
     PazientePrenotatoComponent,
     MedicoComponent,
     DirigenteComponent,
-    GestionalClientiComponent,
+    GestionaleClientiComponent,
     GestionaleMediciComponent,
     GestionalePrestazioniComponent,
     GestionaleRichiesteComponent,

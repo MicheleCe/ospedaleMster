@@ -27,9 +27,11 @@
         Medico
       </div>
       <select [(ngModel)]="medicId" (change)="onSelectMedici(medicId!)" >
-        <option *ngFor="let medico of medici" value="{{medico.medicoId}}">
-          {{ medico.firstName! }} {{ medico.lastName! }} 
-        </option>
+        <ng-container *ngFor="let medico of medici">
+          <option *ngIf="medico.active" value="{{medico.medicoId}}">
+            {{ medico.firstName! }} {{ medico.lastName! }} 
+          </option>
+        </ng-container>
       </select>
     </div>
     <div class="text-center position-relative">

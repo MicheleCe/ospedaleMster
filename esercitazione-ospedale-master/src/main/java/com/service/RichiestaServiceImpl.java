@@ -70,12 +70,14 @@ public class RichiestaServiceImpl implements RichiestaService {
 				String dottoreEmail = richiesta.getAppuntamento().getPrestazione().getMedico().getEmail();
 				es.sendPositiveEmail(pazienteEmail);
 				es.sendPositiveEmail(dottoreEmail);
+				System.out.println("email inviata sulcesso");
 
 			} else {
 				String pazienteEmail = richiesta.getAppuntamento().getPaziente().getEmail();
 				String dottoreEmail = richiesta.getAppuntamento().getPrestazione().getMedico().getEmail();
 				es.sendPositiveEmail(dottoreEmail);
 				es.sendNegaviteEmail(pazienteEmail);
+				System.out.println("email non inviata federico cojone");
 
 			}
 

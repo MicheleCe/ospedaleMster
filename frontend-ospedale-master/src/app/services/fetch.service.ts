@@ -91,6 +91,18 @@ export class fetchService {
     }).then(response =>response.json())
   }
 
+  patchRichiesta(data : object){
+    console.log("post prestazione", data);
+
+    return fetch('http://localhost:8080/ospedale/v1/patchRichiesta',{
+      method:'PATCH',
+      body:JSON.stringify(data),
+      headers:{
+        "Content-Type":'application/json;charset=utf-8'
+      }
+    }).then(response =>response.json())
+  }
+
   patchMedico(data:object){
     console.log("post prestazione", data);
 

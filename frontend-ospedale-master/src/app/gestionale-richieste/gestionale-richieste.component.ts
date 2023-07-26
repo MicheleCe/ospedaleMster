@@ -58,8 +58,6 @@ export class GestionaleRichiesteComponent {
       console.log(JSON.stringify(this.appuntamento));
       this.fetchservice.patchAppuntamento(this.appuntamento)
       this.fetchservice.deleteRichiesta(req.richiestaId).then(() => this.returnRichieste())
-
-      
     } else (
       req.status = false,
       this.fetchservice.deleteRichiesta(req.richiestaId),
