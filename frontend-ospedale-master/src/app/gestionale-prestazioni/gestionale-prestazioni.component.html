@@ -1,13 +1,15 @@
-
 <h3 class="mt-5">Prestazioni disponibili:</h3>
-<div *ngIf="isDirigenteActive" class="text-center mt-4 d-flex flex-column w-25 gap-4 m-auto">
-  <input [(ngModel)]="tipologia" placeholder="tipologia"/>
+<div
+  *ngIf="isDirigenteActive"
+  class="text-center mt-4 d-flex flex-column w-25 gap-4 m-auto"
+>
+  <input [(ngModel)]="tipologia" placeholder="tipologia" />
   <select [(ngModel)]="medicoId" name="" id="">
-    <option *ngFor="let medico of receivedMedici" value="{{medico.medicoId}}">
+    <option *ngFor="let medico of receivedMedici" value="{{ medico.medicoId }}">
       {{ medico.firstName! }} {{ medico.lastName! }}
     </option>
   </select>
-    <button (click)="bottonePrestazione()" class="btn">Submit</button>
+  <button (click)="bottonePrestazione()" class="btn">Submit</button>
 </div>
 
 <table class="table table-striped mt-5">
@@ -20,24 +22,34 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let prestazione of prestazioni">
-      <td *ngIf="isDirigenteActive">
-          <button class="btn" (click)="bottoneDeletePrestazione(prestazione.prestazioneId)">
+    <ng-container *ngFor="let prestazione of prestazioni">
+      <tr *ngIf="prestazione.medico.active">
+        <td *ngIf="isDirigenteActive">
+          <button
+            class="btn"
+            (click)="bottoneDeletePrestazione(prestazione.prestazioneId)"
+          >
             <i class="fa-solid fa-trash"></i>
           </button>
-      </td>
-      <td>
-        {{ prestazione.tipologia }}
-      </td>
-      <td>
-        {{ prestazione.medico.firstName! }} {{ prestazione.medico.lastName! }}
-      </td>
-      <td *ngIf="isSetPrestazioneActive">
-        <button class="btn" (click)="prenotaPrestazione(prestazione)" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button">
-          <i class="fa-solid fa-plus"></i>
-        </button>
-    </td>
-    </tr>
+        </td>
+        <td>
+          {{ prestazione.tipologia }}
+        </td>
+        <td>
+          {{ prestazione.medico.firstName! }} {{ prestazione.medico.lastName! }}
+        </td>
+        <td *ngIf="isSetPrestazioneActive">
+          <button
+            class="btn"
+            (click)="prenotaPrestazione(prestazione)"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            type="button"
+          >
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </td>
+      </tr>
+    </ng-container>
   </tbody>
 </table>
-

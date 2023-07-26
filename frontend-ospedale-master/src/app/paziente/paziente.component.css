@@ -19,9 +19,13 @@
   background-color: red;
 }
 
-.modal-header, .modal-body, .modal-footer{
-  background-color: #004bad;
+label{
+  color: black !important;
 }
+
+/* .modal-header, .modal-body, .modal-footer{
+  background-color: #004bad;
+} */
 
 .cerchio{
   width: 160px;
@@ -40,4 +44,24 @@
   border-radius: 10px;
   border: 0px;
   padding-left: 10px;
+}
+
+
+img{
+  width: 100%;
+}
+
+.foto{
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: white;
+  border: 1px solid #0060df;
+}
+
+.linea-verticale{
+  width: 2px;
+  height: 180px;
+  background-color: rgb(206, 206, 206);
 }

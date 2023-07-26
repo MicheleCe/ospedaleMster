@@ -40,7 +40,12 @@
       </td>
       <td>
         <button class="btn" (click)="isMedicoActive(medico)">
-          Disponibile
+          <ng-container *ngIf="medico.active; else inactiveMedico">
+            Disponibile
+          </ng-container>
+          <ng-template #inactiveMedico>
+            Medico non disponibile
+          </ng-template>
         </button>
       </td>
     </tr>

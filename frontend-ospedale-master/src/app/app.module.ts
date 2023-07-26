@@ -8,7 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserComponent } from './user/user.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PazienteComponent } from './paziente/paziente.component';
-import { PazientePrenotatoComponent } from './paziente/paziente-prenotato/paziente-prenotato.component';
+
 import { MedicoComponent } from './medico/medico.component';
 import { DirigenteComponent } from './dirigente/dirigente.component';
 import { GestionaleClientiComponent } from './gestionale-clienti/gestionale-clienti.component';
@@ -23,7 +23,6 @@ import { GestionaleAppuntamentiComponent } from './gestionale-appuntamenti/gesti
     UserComponent,
     NavbarComponent,
     PazienteComponent,
-    PazientePrenotatoComponent,
     MedicoComponent,
     DirigenteComponent,
     GestionaleClientiComponent,
