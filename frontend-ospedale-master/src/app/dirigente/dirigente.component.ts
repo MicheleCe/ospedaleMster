@@ -11,8 +11,9 @@ export class DirigenteComponent {
 
   receivedMedici: Medico[] | undefined;
 
+  currentComponent : string = ''
+
   updateMedici(receivedMed: Medico[]) {
     this.receivedMedici = receivedMed;
   }
-
 }

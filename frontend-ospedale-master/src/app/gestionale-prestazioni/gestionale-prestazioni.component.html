@@ -1,12 +1,17 @@
 <h3 class="mt-5">Prestazioni disponibili:</h3>
+<ng-component *ngIf="isDirigenteActive">
+  <button class="btn mt-4" routerLink="dirigent">
+    <i class="fa-solid fa-arrow-left"></i>
+  </button>
+</ng-component>
 <div
   *ngIf="isDirigenteActive"
   class="text-center mt-4 d-flex flex-column w-25 gap-4 m-auto"
 >
   <input [(ngModel)]="tipologia" placeholder="tipologia" />
   <select [(ngModel)]="medicoId" name="" id="">
-    <option *ngFor="let medico of receivedMedici" value="{{ medico.medicoId }}">
-      {{ medico.firstName! }} {{ medico.lastName! }}
+    <option *ngFor="let medico of medici" value="{{ medico.medicoId }}">
+      {{ medico.firstName }} {{ medico.lastName }}
     </option>
   </select>
   <button (click)="bottonePrestazione()" class="btn">Submit</button>

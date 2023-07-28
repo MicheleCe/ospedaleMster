@@ -24,6 +24,13 @@ export class fetchService {
     }).then(response =>response.json()).then(data =>{return data})
   }
 
+  getAllAppuntamenti(){
+    return fetch(`http://localhost:8080/ospedale/v1/getAppuntamenti`,{
+      method:'GET',
+    }).then(response =>response.json()).then(data =>{return data})
+    
+  }
+
   getAppuntamentiByPaziente(id:number) {
     return fetch(`http://localhost:8080/ospedale/v1/getAppuntamentoByPazienteId/${id}`,{
       method:'GET',

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { fetchService } from '../services/fetch.service';
 import { Prestazione } from '../interfaces/prestazione';
 import { Medico } from '../interfaces/medico';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterState, RouterStateSnapshot} from "@angular/router";
 
 @Component({
   selector: 'app-gestionale-prestazioni',
@@ -10,9 +10,11 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./gestionale-prestazioni.component.css']
 })
 export class GestionalePrestazioniComponent implements OnInit{
-  constructor(private fetchservice: fetchService,  private route: ActivatedRoute) {}
+  constructor(private fetchservice: fetchService,  private route: ActivatedRoute, private router: Router ) {}
   
-  @Input() receivedMedici: Medico[] | undefined;
+  // @Input() receivedMedici: Medico[] | undefined;
+
+  medici : Medico[] = []
 
   @Output() prenotazionePrestazione = new EventEmitter<Prestazione>();
   
@@ -20,8 +22,8 @@ export class GestionalePrestazioniComponent implements OnInit{
   isSetPrestazioneActive: boolean = false 
 
   renderPutPrestazioni(){
-    if (this.route.snapshot.routeConfig?.path == 'dirigente') {
-      this.isDirigenteActive = true} else (this.isSetPrestazioneActive = true )
+    if ( this.router.routerState.snapshot.url == '/dirigente/prestazioni') {
+      this.isDirigenteActive = true} else ( console.log("edsdsdsd", this.router.routerState.snapshot.url), this.isSetPrestazioneActive = true )
   } 
   prestazioni: Prestazione[] = [];
 
@@ -37,6 +39,7 @@ export class GestionalePrestazioniComponent implements OnInit{
   ngOnInit(): void {
     this.returnPrestazioni();
     this.renderPutPrestazioni()
+    this.returnMedici()
   }
 
   returnPrestazioni() {
@@ -61,5 +64,12 @@ export class GestionalePrestazioniComponent implements OnInit{
   prenotaPrestazione(data : any){
     this.prenotazionePrestazione.emit(data);
   }
+
+  returnMedici(){
+    this.fetchservice.getMedico().then((data) => this.medici = data)
+    console.log(this.medici);
+    
+  }
+
 
 }

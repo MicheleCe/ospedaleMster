@@ -43,7 +43,7 @@ export class UserComponent {
   }
 
   onSelectMedici(medicId: string) {
-    this.router.navigate(['medico', this.medicId]);
+    this.router.navigate(['medico', medicId]);
   }
 
   onSelect(pazienteId: string) {
