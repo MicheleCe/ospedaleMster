@@ -9,22 +9,26 @@ import { GestionaleClientiComponent } from './gestionale-clienti/gestionale-clie
 import { GestionaleRichiesteComponent } from './gestionale-richieste/gestionale-richieste.component';
 import { GestionaleAppuntamentiComponent } from './gestionale-appuntamenti/gestionale-appuntamenti.component';
 import { GestionalePrestazioniComponent } from './gestionale-prestazioni/gestionale-prestazioni.component';
+import { LoginComponentComponent } from './login-component/login-component.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: UserComponent},
-  {path: 'paziente/:id', component: PazienteComponent },
-  {path: 'medico/:id', component: MedicoComponent},
-  {path:'dirigente',component: DirigenteComponent, children : [ 
-    {path: 'medici', component: GestionaleMediciComponent},
-    {path: 'pazienti', component: GestionaleClientiComponent},
-    {path: 'appuntamenti', component: GestionaleAppuntamentiComponent},
-    {path: 'prestazioni', component: GestionalePrestazioniComponent},
-    {path: 'richieste', component: GestionaleRichiesteComponent}
-  ]}
+  { path: 'login', component: LoginComponentComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {
+    path: 'admin',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
+  { path: 'paziente/:id', component: PazienteComponent },
+  { path: 'medico/:id', component: MedicoComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

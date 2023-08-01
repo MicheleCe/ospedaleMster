@@ -72,6 +72,18 @@ export class fetchService {
     }).then(response =>response.json())
   }
 
+  getMedicoByEmail(email : string) {
+    return fetch(`http://localhost:8080/ospedale/v1/getMedicoByEmail/${email}`,{
+      method:'GET',
+    })
+  }
+
+  getPazienteByEmail(email : string) {
+    return fetch(`http://localhost:8080/ospedale/v1/getPazienteByEmail/${email}`,{
+      method:'GET',
+    })
+  }
+
   /* POST */
 
   postAppuntamento(data:object){

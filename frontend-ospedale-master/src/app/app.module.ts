@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,8 @@ import { GestionaleMediciComponent } from './gestionale-medici/gestionale-medici
 import { GestionalePrestazioniComponent } from './gestionale-prestazioni/gestionale-prestazioni.component';
 import { GestionaleRichiesteComponent } from './gestionale-richieste/gestionale-richieste.component';
 import { GestionaleAppuntamentiComponent } from './gestionale-appuntamenti/gestionale-appuntamenti.component';
+import { LoginComponentComponent } from './login-component/login-component.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +31,16 @@ import { GestionaleAppuntamentiComponent } from './gestionale-appuntamenti/gesti
     GestionaleMediciComponent,
     GestionalePrestazioniComponent,
     GestionaleRichiesteComponent,
-    GestionaleAppuntamentiComponent
+    GestionaleAppuntamentiComponent,
+    LoginComponentComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
