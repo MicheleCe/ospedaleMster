@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { fetchService } from '../services/fetch.service';
 import { ActivatedRoute } from '@angular/router';
+import { Appuntamento } from '../interfaces/Appuntamento';
 import { Medico } from '../interfaces/medico';
 import { Prestazione } from '../interfaces/prestazione';
-import { Appuntamento } from '../interfaces/Appuntamento';
+import { fetchService } from '../services/fetch.service';
+import { LogAuthService } from '../services/log.auth.service';
 
 @Component({
   selector: 'app-medico',
@@ -14,7 +15,8 @@ export class MedicoComponent {
 
   constructor(
     private fetchservice: fetchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private logAuth : LogAuthService
   ) {}
 
   medicoSelezionato: Medico = {
@@ -42,11 +44,11 @@ export class MedicoComponent {
   appuntamenti : Appuntamento[] = []
   
   id: string | null = this.route.snapshot.paramMap.get('id');
-  numberId: number = Number(this.id);
+  numberId: number | undefined = this.logAuth.id;
   
   ngOnInit(): void {
     console.log("id medico", this.numberId);
-    this.returnSelectedMedico(this.numberId)
+    this.returnSelectedMedico(this.numberId!)
   }
 
   returnSelectedMedico(id: number) {

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Medico } from '../interfaces/medico';
 
 
 @Component({
@@ -9,11 +8,11 @@ import { Medico } from '../interfaces/medico';
 })
 export class DirigenteComponent {
 
-  receivedMedici: Medico[] | undefined;
+  // receivedMedici: Medico[] | undefined;
 
   currentComponent : string = ''
 
-  updateMedici(receivedMed: Medico[]) {
-    this.receivedMedici = receivedMed;
-  }
+  // updateMedici(receivedMed: Medico[]) {
+  //   this.receivedMedici = receivedMed;
+  // }
 }

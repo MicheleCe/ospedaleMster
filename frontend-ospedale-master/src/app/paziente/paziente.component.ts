@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { GestionaleAppuntamentiComponent } from '../gestionale-appuntamenti/gestionale-appuntamenti.component';
+import { Appuntamento } from '../interfaces/Appuntamento';
+import { Paziente } from '../interfaces/paziente';
 import { Prestazione } from '../interfaces/prestazione';
 import { fetchService } from '../services/fetch.service';
-import { ActivatedRoute } from '@angular/router';
-import { Paziente } from '../interfaces/paziente';
-import { Appuntamento } from '../interfaces/Appuntamento';
-import { GestionaleAppuntamentiComponent } from '../gestionale-appuntamenti/gestionale-appuntamenti.component';
+import { LogAuthService } from '../services/log.auth.service';
 
 
 @Component({
@@ -15,13 +16,14 @@ import { GestionaleAppuntamentiComponent } from '../gestionale-appuntamenti/gest
 export class PazienteComponent {
   constructor(
     private fetchservice: fetchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private logAuth : LogAuthService
     ) {}
     
     @ViewChild(GestionaleAppuntamentiComponent) childComponent: GestionaleAppuntamentiComponent | undefined;
 
     ngOnInit(): void {
-      this.returnSelectedPaziente(this.numberId);
+      this.returnSelectedPaziente(this.numberId!);
     }
     
 
@@ -53,15 +55,15 @@ export class PazienteComponent {
   };
 
   id: string | null = this.route.snapshot.paramMap.get('id');
-  numberId: number = Number(this.id);
+  numberId: number | undefined = this.logAuth.id;
 
   prestazioni: Prestazione[] = [];
 
   bottonePostAppuntamento() {
-    this.nuovoAppuntamento.pazienteId = this.numberId;
+    this.nuovoAppuntamento.pazienteId = this.numberId!;
     this.nuovoAppuntamento.prestazioneId = Number(this.nuovaPrestazione?.prestazioneId);
     console.log(this.nuovoAppuntamento);
-    this.fetchservice.postAppuntamento(this.nuovoAppuntamento).then(() => this.childComponent?.returnAppuntamenti(this.numberId))
+    this.fetchservice.postAppuntamento(this.nuovoAppuntamento).then(() => this.childComponent?.returnAppuntamenti(this.numberId!))
   }
 
   addPrestazione(receivedPrestazione : Prestazione){
